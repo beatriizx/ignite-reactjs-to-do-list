@@ -1,4 +1,9 @@
 .container {
-  background-image: linear-gradient(var(--gray-700) 10%, var(--gray-600) 0%);
+
   height: 100%;
+  padding-top: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.3rem;
 }

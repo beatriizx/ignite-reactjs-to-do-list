@@ -14,8 +14,15 @@
 }
 
 body {
+  background-image: linear-gradient(var(--gray-700) 200px, var(--gray-600) 0%);
+  background-repeat: no-repeat;
+  overflow: auto;
   font-family: 'Inter', sans-serif;
-  height: 100vw;
+}
+
+html,
+body {
+  min-height: 100%;
 }
 
 #root {
