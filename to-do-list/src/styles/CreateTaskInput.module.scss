@@ -13,19 +13,22 @@
     gap: 0.5rem;
 
     input {
-      flex: 1;
-      padding-left: 1rem;
-      background-color: var(--gray-500);
-      border: 1px solid #0D0D0D;
-    }
+      &:first-of-type {
+        flex: 1;
+        padding-left: 1rem;
+        background-color: var(--gray-500);
+        border: 1px solid #0d0d0d;
+        color: var(--gray-100);
+      }
 
-    button {
-      background-color: var(--blue-dark);
-      padding: 1rem;
-      width: 90px;
-      border: none;
-      color: var(--gray-100);
-      font-weight: 700;
+      &:last-of-type {
+        background-color: var(--blue-dark);
+        padding: 1rem;
+        width: 90px;
+        border: none;
+        color: var(--gray-100);
+        font-weight: 700;
+      }
     }
 
     * {
@@ -34,12 +37,10 @@
   }
 }
 
-
 @media screen and (min-width: 980px) {
   .formContainer {
     form {
       width: 40%;
     }
   }
-  
 }
