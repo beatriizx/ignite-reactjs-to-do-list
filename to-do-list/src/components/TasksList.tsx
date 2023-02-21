@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react';
+import { ChangeEvent, ChangeEventHandler } from 'react';
 import styles from '../styles/TaskList.module.scss';
 
 interface Task {
@@ -9,7 +9,7 @@ interface Task {
 
 interface TaskListProps {
   tasks: Task[];
-  handleChange: ChangeEventHandler<HTMLInputElement>
+  handleChange?: any;
 }
 
 export const TasksList = ({ tasks, handleChange }: TaskListProps) => {
@@ -38,7 +38,9 @@ export const TasksList = ({ tasks, handleChange }: TaskListProps) => {
                 id={task.id.toString()}
                 type="checkbox"
                 defaultChecked={task.completed}
-                onChange={handleChange}
+                onChange={() => {
+                  handleChange(task.id);
+                }}
               />
               <label htmlFor={task.id.toString()}></label>
             </div>

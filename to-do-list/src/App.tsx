@@ -16,22 +16,26 @@ export const App = () => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     setTasks([...tasks, { id: Math.random(), task: newTask, completed: false }]);
-    console.log(tasks);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setNewTask(event.target.value);
   };
 
-  const handleCheckboxChange = () => {
-    
-  }
+  const handleCheckboxChange = (currentID: number) => {
+    const newTasks = tasks.map((item) => {
+      if (item.id === currentID) item.completed = !item.completed;
+      return item;
+    });
+
+    setTasks(newTasks)
+  };
 
   return (
     <div className={styles.container}>
       <img src={logo} alt="" />
       <CreateTaskInput onHandleSubmit={handleSubmit} onHandleChange={handleChange} />
-      <TasksList tasks={tasks} />
+      <TasksList tasks={tasks} handleChange={handleCheckboxChange} />
     </div>
   );
 };
