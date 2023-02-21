@@ -30,7 +30,7 @@ export const App = () => {
     setNewTask(event.target.value);
   };
 
-  const handleCheckboxChange = (currentID: number) => {
+  const handleTaskStatusChange = (currentID: number) => {
     const newTasks = tasks.map((item) => {
       if (item.id === currentID) item.completed = !item.completed;
       return item;
@@ -45,7 +45,7 @@ export const App = () => {
       <CreateTaskInput onHandleSubmit={handleSubmit} onHandleChange={handleChange} />
       <TasksList
         tasks={tasks}
-        handleChange={handleCheckboxChange}
+        handleTaskStatusChange={handleTaskStatusChange}
         handleDeleteTask={handleDeleteTask}
       />
     </div>

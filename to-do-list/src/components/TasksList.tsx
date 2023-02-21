@@ -1,6 +1,6 @@
-import { ChangeEvent, ChangeEventHandler } from 'react';
 import deleteIcon from '../assets/delete.svg';
 import styles from '../styles/TaskList.module.scss';
+import folderIcon from '../assets/folder.svg';
 
 interface Task {
   id: number;
@@ -10,13 +10,46 @@ interface Task {
 
 interface TaskListProps {
   tasks: Task[];
-  handleChange?: any;
-  handleDeleteTask?: any
+  handleTaskStatusChange?: any;
+  handleDeleteTask?: any;
 }
 
-export const TasksList = ({ tasks, handleChange, handleDeleteTask }: TaskListProps) => {
+export const TasksList = ({ tasks, handleTaskStatusChange, handleDeleteTask }: TaskListProps) => {
   const tasksAmount = tasks.length;
   const completedTasks = tasks.filter((item) => item.completed).length;
+  const emptyList = (
+    <div className={styles.emptyList}>
+      <img src={folderIcon} alt="" />
+      <p>Você ainda não tem tarefas cadastradas</p>
+      <p>Crie tarefas e organize seus itens a fazer</p>
+    </div>
+  );
+
+  const list = tasks.map((task) => (
+    <li key={task.id}>
+      <div>
+        <div className={styles.customCheckbox}>
+          <input
+            id={task.id.toString()}
+            type="checkbox"
+            defaultChecked={task.completed}
+            onChange={() => {
+              handleTaskStatusChange(task.id);
+            }}
+          />
+          <label htmlFor={task.id.toString()}></label>
+        </div>
+        <p>{task.task}</p>
+      </div>
+      <button
+        onClick={() => {
+          handleDeleteTask(task.id);
+        }}
+      >
+        <img src={deleteIcon} alt="" />
+      </button>
+    </li>
+  ));
 
   return (
     <div className={styles.container}>
@@ -32,31 +65,7 @@ export const TasksList = ({ tasks, handleChange, handleDeleteTask }: TaskListPro
         </span>
       </div>
 
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <div>
-              <div className={styles.customCheckbox}>
-                <input
-                  id={task.id.toString()}
-                  type="checkbox"
-                  defaultChecked={task.completed}
-                  onChange={() => {
-                    handleChange(task.id);
-                  }}
-                />
-                <label htmlFor={task.id.toString()}></label>
-              </div>
-              <p>{task.task}</p>
-            </div>
-            <button onClick={() => {
-              handleDeleteTask(task.id)
-            }}>
-              <img src={deleteIcon} alt="" />
-            </button>
-          </li>
-        ))}
-      </ul>
+      <ul>{tasks.length ? list : emptyList}</ul>
     </div>
   );
 };

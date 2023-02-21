@@ -10,7 +10,7 @@ export const CreateTaskInput = ({ onHandleSubmit, onHandleChange }: CreateTaskIn
   return (
     <div className={styles.formContainer}>
       <form onSubmit={onHandleSubmit}>
-        <input type="text" placeholder="Adicione uma tarefa" onChange={onHandleChange} />
+        <input type="text" placeholder="Adicione uma tarefa" onChange={onHandleChange} required />
         <input type="submit" value="Criar"></input>
       </form>
     </div>
