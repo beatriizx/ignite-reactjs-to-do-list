@@ -18,6 +18,14 @@ export const App = () => {
     setTasks([...tasks, { id: Math.random(), task: newTask, completed: false }]);
   };
 
+  const handleDeleteTask = (id: number) => {
+    const newArray = tasks.filter((item) => {
+      return item.id != id;
+    });
+
+    setTasks(newArray);
+  };
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setNewTask(event.target.value);
   };
@@ -28,14 +36,18 @@ export const App = () => {
       return item;
     });
 
-    setTasks(newTasks)
+    setTasks(newTasks);
   };
 
   return (
     <div className={styles.container}>
       <img src={logo} alt="" />
       <CreateTaskInput onHandleSubmit={handleSubmit} onHandleChange={handleChange} />
-      <TasksList tasks={tasks} handleChange={handleCheckboxChange} />
+      <TasksList
+        tasks={tasks}
+        handleChange={handleCheckboxChange}
+        handleDeleteTask={handleDeleteTask}
+      />
     </div>
   );
 };

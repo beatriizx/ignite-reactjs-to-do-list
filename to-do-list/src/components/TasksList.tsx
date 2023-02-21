@@ -1,4 +1,5 @@
 import { ChangeEvent, ChangeEventHandler } from 'react';
+import deleteIcon from '../assets/delete.svg';
 import styles from '../styles/TaskList.module.scss';
 
 interface Task {
@@ -10,9 +11,10 @@ interface Task {
 interface TaskListProps {
   tasks: Task[];
   handleChange?: any;
+  handleDeleteTask?: any
 }
 
-export const TasksList = ({ tasks, handleChange }: TaskListProps) => {
+export const TasksList = ({ tasks, handleChange, handleDeleteTask }: TaskListProps) => {
   const tasksAmount = tasks.length;
   const completedTasks = tasks.filter((item) => item.completed).length;
 
@@ -33,18 +35,25 @@ export const TasksList = ({ tasks, handleChange }: TaskListProps) => {
       <ul>
         {tasks.map((task) => (
           <li key={task.id}>
-            <div className={styles.customCheckbox}>
-              <input
-                id={task.id.toString()}
-                type="checkbox"
-                defaultChecked={task.completed}
-                onChange={() => {
-                  handleChange(task.id);
-                }}
-              />
-              <label htmlFor={task.id.toString()}></label>
+            <div>
+              <div className={styles.customCheckbox}>
+                <input
+                  id={task.id.toString()}
+                  type="checkbox"
+                  defaultChecked={task.completed}
+                  onChange={() => {
+                    handleChange(task.id);
+                  }}
+                />
+                <label htmlFor={task.id.toString()}></label>
+              </div>
+              <p>{task.task}</p>
             </div>
-            <p>{task.task}</p>
+            <button onClick={() => {
+              handleDeleteTask(task.id)
+            }}>
+              <img src={deleteIcon} alt="" />
+            </button>
           </li>
         ))}
       </ul>
