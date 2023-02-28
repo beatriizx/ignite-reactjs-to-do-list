@@ -1,7 +1,7 @@
 
 # 📖 Sobre
 
-Essa aplicação é o primeiro desáfio do curso Ignite React da Rocketseat. O objetivo é criar um CRUD de um gerenciador de tarefas.
+Essa aplicação é o primeiro desafio do curso Ignite React da Rocketseat. O objetivo é criar um CRUD de um gerenciador de tarefas.
 
 ### 🚀 Tecnologias
 
