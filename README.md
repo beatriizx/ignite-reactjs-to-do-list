@@ -7,6 +7,7 @@ Essa aplicação é o primeiro desafio do curso Ignite React da Rocketseat. O ob
 
 - React.js
 - Typescript
+- Vite
 - SCSS
 - HTML
 
